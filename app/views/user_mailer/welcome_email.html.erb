@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.name %></h1>
+    <p>
+      You have successfully signed up to skilbjo-prod,
+      your username is: <%= @user.id %>.<br/>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>
+    	To access your profile, follow this link instead: #%= link_to "Profile",  current_user %#.
+    </p>
+    <p>Thanks again for registering!</p>
+    <p>John</p>
+  </body>
+</html>

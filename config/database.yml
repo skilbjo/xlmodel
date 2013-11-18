@@ -1,0 +1,21 @@
+development:
+  adapter: postgresql
+  host: localhost
+  database: db_xl_dev
+
+
+test: &test
+  adapter: postgresql
+  host: localhost
+  pool: 5
+  timeout: 5000
+  database: db_xl_test
+  
+production:
+  adapter: postgresql
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+cucumber:
+  <<: *test
