@@ -1,4 +1,5 @@
 Xlmodel::Application.routes.draw do
+  resources :users
 
   root 'users#home'
   match '/users',   to: 'users#new',             via: 'get'
