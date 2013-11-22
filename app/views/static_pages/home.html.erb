@@ -1,49 +1,40 @@
-<div class="jumbotron">
-  <h1>Welcome to the xlModel</h1>
-  <h2>
-    This is the home page for the
-    <a href="http://xlmodel.herokuapp.com/">xlModel</a>
-    website!
-  </h2>
+<div id="hero" class="container">
+  <div class="inner">
+  <h1>BE AN EXPERT IN XL</h1>
+    <h2>
+      Advanced Excel - for Anyone, Anywhere
+    </h2>
+  </div>
 </div>
 
 <div class="container">
-<!-- 
-		feature stuff here
--->
+  <div class="row">
+    <div class="col-xs-6 col-md-4"><h3>Feature 1</h3>
+      <p class="text-center"> Text here </p>
+    </div>
+    <div class="col-xs-6 col-md-4"><h3>Feature 2</h3>
+      <p class="text-center"> Text here </p>
+    </div>
+    <div class="col-xs-6 col-md-4"><h3>Feature 3</h3>
+      <p class="text-center"> Text here </p>
+    </div>
+  </div>
 </div>
 
-<div class="">
+<div class="container">
 <!-- sign up -->
-<div class="row">
-	<div class="span6 offset3">
-		<%= form_for(@user) do |f| %>
-			<%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= label_tag :card_number, "Credit Card Number" %>
-      <%= text_field_tag :card_number, nil, name: nil %>
-
-      <%= label_tag :card_code, "Security Code on Card (CCV)" %>
-      <%= text_field_tag :card_code, nil, name: nil %>
-
-      <%= label_tag :card_month, "Card Expiration" %>
-      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month" } %>
-      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-      <div id="stripe_error">
-            <noscript>JavaScript is not enable and is required for this form. First enable it in your web browser settings.</noscript>
-      </div>
-			<div class="actions"><%= f.submit "Purchase now", class: "btn btn-large btn-primary" %></div>
-
-		<% end %>
+	<div class="col-md-4">
+         <div class="center-block">
+          <p class="text-center">
+            <%= link_to "Sign up", new_user_path() %>
+          </p>
+        </div> 
+        <span class="glyphicon glyphicon-record"></span>
 	</div>
+
 </div>
 
-  <%= link_to "Purchase now!", signup_path, class: "btn btn-large btn-primary" %>
+<div class="container">
+<p class="text-center><%= link_to image_tag("xl.png", class: "img-responsive", alt: "Excel", :height => 100), 'http://xlmodel.herokuapp.com/' %></p>
 </div>
-
-<%= link_to image_tag("xl.png", alt: "Excel", :height => 100), 'http://xlmodel.herokuapp.com/' %>
