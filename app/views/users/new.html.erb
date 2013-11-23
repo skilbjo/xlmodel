@@ -1,8 +1,6 @@
-
-<form action="" method="POST" id="payment-form">
+<!--  <form action="/create" method="POST" id="payment-form">
   <span class="payment-errors"></span>
-
-  <div class="form-row">
+    <div class="form-row">
     <label>
       <span>Card Number</span>
       <input type="text" size="20" data-stripe="number"/>
@@ -23,7 +21,39 @@
     </label>
     <span> / </span>
     <input type="text" size="4" data-stripe="exp-year"/>
-  </div>
+  </div>  </form>    -->
 
-  <button type="submit">Submit Payment</button>
-</form>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul> <% @user.errors.full_messages.each do |msg| %> <li><%= msg %></li> <% end %> </ul>
+    </div>
+  <% end %>
+  <div class="field"> <%= f.label :name %> <%= f.text_field :name %> </div>
+  <div class="field"> <%= f.label :email %> <%= f.text_field :email %> </div>
+  <% if @user.ptoken.present? %> Credit card has been provided.
+  <% else %>
+    <div class="field">
+      <%= label_tag :card_number, "Credit Card Number" %> <input type="text" size="20" data-stripe="number"/>
+    </div>
+    <div class="field">
+      <%= label_tag :card_code, "CVV" %> <input type="text" size="4" data-stripe="cvc"/>
+    </div>
+    <div class="field">
+      <%= label_tag :card_month, "Card Expiration" %>
+      <input type="text" size="2" data-stripe="exp-month"/>
+          <span> / </span>
+    <input type="text" size="4" data-stripe="exp-year"/>
+    </div>
+  <% end %>
+  <div id="stripe_error">
+    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+  </div>
+  <div class="actions">
+
+    <%= f.submit "XL Model!" %>
+  </div>
+<% end %>
+
+

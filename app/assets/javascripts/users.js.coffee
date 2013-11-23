@@ -1,30 +1,33 @@
-jQuery ->
-	Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-	user.setupForm()
+$(document).ready ->
+  stripeResponseHandler = (status, response) ->
+    $form = $("#new_user")
+    if response.error
+      
+      # Show the errors on the form
+      $form.find(".payment-errors").text response.error.message
+      $form.find("button").prop "disabled", false
+    else
+      
+      # token contains id, last4, and card type
+      token = response.id
+      
+      # Insert the token into the form so it gets submitted to the server
+      $form.append $('<input type="hidden" name="user[ptoken]" />').val(token)
+      
+      # and submit
+      $form.get(0).submit()
 
-user =
-	setupForm: ->
-		$('#new_user').submit ->
-			$('input[type=submit]').attr('disabled', true)
-			if $('#card_number').length
-				user.processCard()
-				false
-			else
-				true
-
-processCard: ->
-	card =
-		number: $('#card_number').val()
-		cvc: $('#card_code').val()
-		expMonth: $('#card_month').val()
-		expYear: $('#card_year').val()
-	Stripe.createToken(card, user.handleStripeResponse)
-
-handleStripeResponse: (status, response) ->
-	if status == 200
-		$('#user_token').val(response.id)
-		$('#new_user')[0].submit()
-	else
-		$('#stripe_error').text(response.error.message)
-		$('input[type=submit]').attr('disabled', false)
+  Stripe.setPublishableKey $("meta[name=\"stripe-key\"]").attr("content")
+  $("#new_user").submit (event) ->
+    $form = $(this)
+    
+    # Disable the submit button to prevent repeated clicks
+    $form.find("button").prop "disabled", true
+    try
+      Stripe.card.createToken $form, stripeResponseHandler
+    catch e
+      debugger
+    
+    # Prevent the form from submitting with the default action
+    false
 
