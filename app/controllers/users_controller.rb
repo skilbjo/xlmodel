@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-attr_accessor :stripe_card_token
 attr_accessor :ptoken
 
   def home
@@ -12,35 +11,42 @@ attr_accessor :ptoken
 
   def create
     @user = User.new(user_params)
-    @user.product = 'xltest'
-    if save_with_stripe # || save_with_fortumo || save_with_coinbase
-      #if save_with_stripe
-        @user.payment_processor = 'stripe'
-        if @user.save
-          #UserMailer.welcome_email(@user).deliver      # Uncomment to send welcome email
+    @user.product = 'xltest'  # can be either radio button or link path in future
+    if params[:commit] == 'stripe'
+      if save_with_stripe # || save_with_fortumo || save_with_coinbase ### this will be radio button
+        if @user.save && user.valid?
+          #logger.debug "made it pasted save"
           flash.now[:success] = "Thank you for payment!"
+          #UserMailer.welcome_email(@user).deliver      # Uncomment to send welcome email          
           #redirect_to 'thanks'
-        else
-          render 'new'
         end
-      #end
+      else
+        #render 'new'
+      end
+    if params[:commit] == 'fortumo'
+    end
     end
   end
 
   def save_with_stripe
     customer = Stripe::Charge.create(:amount => 400, :currency => "usd", :card => @user.ptoken, :description => @user.email)
-    #@user.ptoken = customer.card
+    #@user.payment_id = customer.id
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"
     #self.errors.add :base, "There was a problem with your credit card." 
   end
 
-"""
-  @user.valid? &&
-  def thanks
-    redirect_to 'thanks'
+
+  def save_with_fortumo
   end
-"""
+
+  def save_with_dwolla
+  end
+
+  def save_with_coinbase
+  end
+
+
   private
 
   	def user_params

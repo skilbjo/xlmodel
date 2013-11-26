@@ -1,14 +1,12 @@
 <div id="hero" class="container">
   <div class="inner">
-  <h1>BE AN EXPERT IN XL</h1>
-    <h2>
-      Advanced Excel - for Anyone, Anywhere
-    </h2>
+  <h1>BECAUSE EVERYONE CAN XL</h1>
+  <h2>XL - For Anyone, Anywhere</h2>
   </div>
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="row text-center">
     <div class="col-xs-6 col-md-4"><h3>Feature 1</h3>
       <p class="text-center"> Text here </p>
     </div>
@@ -23,18 +21,10 @@
 
 <div class="container">
 <!-- sign up -->
-
-	<div class="col-md-4">
-         <div class="center-block">
-          <p class="text-center">
-            <%= link_to "Sign up", new_user_path() %>
-          </p>
-        </div> 
-        <span class="glyphicon glyphicon-record"></span>
+	<div class="col-md-4"><div class="center-block"><p class="text-center"><%= link_to "Sign up", new_user_path() %></p></div> 
 	</div>
-
 </div>
 
-<div class="container">
-<p class="text-center><%= link_to image_tag("xl.png", class: "img-responsive", alt: "Excel", :height => 100), 'http://xlmodel.herokuapp.com/' %></p>
+<div class="row text-center">
+<div class="span12 pagination-centered"><%= link_to image_tag("xl.png", class: "img-responsive", alt: "Excel", :height => 100), 'http://xlmodel.herokuapp.com/' %></div>
 </div>

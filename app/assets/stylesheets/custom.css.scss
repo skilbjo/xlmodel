@@ -91,6 +91,11 @@ textarea {
   text-align: center;
 }
 
+.pagination-centered {
+  text-align: center;
+}
+
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   text-align: center;
@@ -109,7 +114,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $gray-light;
+ /* color: $gray-light; */
 }
 
 p {
@@ -129,11 +134,14 @@ p {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
+  text-decoration: none;
   &:hover {
   color: #fff;
-  text-decoration: none; 
+  text-decoration: none;
   }
 }
+
+.nounderline{text-decoration: none}
 
 /* footer */
 
@@ -141,9 +149,9 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
-  color: 404040;
+  background-color: 404040;
   a {
-  color: #555;
+  color: #ffffff;
   &:hover {
     color: #222;
     }
@@ -186,18 +194,12 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-
 /* miscellaneious */
 
   .debug_dump {
     clear: both;
-    float: left;
-    width: 100%;
+    float: center;
+    width: 50%;
     margin-top: 45px;
     @include box_sizing;
   }
@@ -243,7 +245,7 @@ aside {
 }
 
 /* pay with bits */
-
+/*
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -273,5 +275,5 @@ aside {
   font-style: normal;
   font-weight: 700;
   src: local('PT Sans Bold'), local('PTSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/ptsans/v5/0XxGQsSc1g4rdRdjJKZrNL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
-}
+} */
 
