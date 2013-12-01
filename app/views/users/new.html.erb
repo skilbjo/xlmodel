@@ -3,7 +3,7 @@
   <div class="jumbotron jumbotron-midnight text-centered">
 
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => { :class => "form-horizontal", :role => "form" } do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -12,27 +12,49 @@
   <% end %>
 
   <!-- Always show this -->
+  <div class="form-group"> 
+    <%= f.label :name, :class => "col-sm-2 control-label" %> 
+    <div class="col-sm-10">
+      <%= f.text_field :name, :class => "form-control", :value => "John" , :autocomplete => :on %> 
+    </div> 
+  </div>
   <div class="form-group">
-    <div class="field"> <%= f.label :name %> <%= f.text_field :name, :value => "John" , :autocomplete => :on %> </div>
-    <div class="field"> <%= f.label :email %> <%= f.text_field :email, :value => "johnskilbeck@gmail.com", :autocomplete => :on %> </div>
-    <div id="processor-div">
-      <%= label :payment_processor, 'Stripe' %><%= f.radio_button :payment_processor, 'stripe', class: 'payment_processor_radio' %>
-      <%= label :payment_processor, 'Pay by Mobile!' %><%= f.radio_button :payment_processor, 'fortumo', class: 'payment_processor_radio' %>
-    </div>
+    <%= f.label :email, :class => "col-sm-2 control-label" %> 
+    <div class="col-sm-10"> <%= f.text_field :email, :class => "form-control", :value => "johnskilbeck@gmail.com", :autocomplete => :on %> </div>
+  </div>
+  <div class="form-group">
+      <%= label :payment_processor, 'Stripe' , :class => "col-sm-2 control-label" %><%= f.radio_button :payment_processor, 'stripe', class: 'payment_processor_radio' %>
+  </div>
+  <div class="form-group">
+      <%= label :payment_processor, 'Pay by Mobile!' , :class => "col-sm-2 control-label"%><%= f.radio_button :payment_processor, 'fortumo', class: 'payment_processor_radio' %>
+  </div>
     <% if @user.ptoken.present? %> Credit card has been provided.
     <% else %>
 
+
   <!-- Show this if Stripe radio button is selected -->
-  <div class="stripe-div" id="stripe-div">
-    <div class="field"><%= label_tag :card_number, "Card Number" %> <input type="text" size="20" data-stripe="number" value="42424242424242" placeholder="•••• •••• •••• ••••" pattern="\d*"/></div>
-    <div class="field"><%= label_tag :card_code, "CVV" %> <input type="text" size="4" data-stripe="cvc", placeholder="•••", inputmode="numeric"/></div>
-    <div class="field">
-      <%= label_tag :card_month, "Card Expiration" %>
-      <select data-stripe="exp-month" style="width: 70px" <option selected="" >12</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-      <span> / </span>
-      <select data-stripe="exp-year" style="width: 70px"><option selected="" >14</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
+  <div id="stripe-div" class="form-group">
+    <div class="form-group">
+    <%= label_tag :card_number, "Card Number", :class => 'col-sm-2 control-label' %> 
+    <div class="col-sm-10"> <input type="text" size="20", class="form-control", data-stripe="number" value="42424242424242" placeholder="•••• •••• •••• ••••" pattern="\d*"/>
     </div>
-    <%= f.submit "stripe", name: "commit", id: "stripe" %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :card_code, "CVV", :class => 'col-sm-2 control-label' %> 
+      <div class="col-sm-10"> <input type="text" size="4", class="form-control", data-stripe="cvc", placeholder="•••", inputmode="numeric"/></div>
+    </div>
+    <div class="form-group">
+      <%= label_tag :card_month, "Card Expiration", :class => 'col-sm-2 control-label' %>
+      <div class="col-sm-10"> <select data-stripe="exp-month" style="width: 70px" <option selected="" >12</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+      <span> / </span>
+      <select data-stripe="exp-year" style="width: 70px" <option selected="" >14</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "stripe", name: "commit", id: "stripe" %>
+      </div>
+    </div>
     <div id="stripe_error">
       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
     </div>
@@ -42,15 +64,17 @@
     
   <!-- Show this if Fortumo radio button is selected --> 
     <div id="fortumo-div">   
+      <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit "fortumo", name: "commit", id: "fortumo" %>
       <a id="fmp-button" href="#" rel="68d255f7612c6363dce8cd2b73e6d303"><img src="http://fortumo.com/images/fmp/fortumopay_96x47.png" width="96" height="47" alt="Mobile Payments by Fortumo" border="0" /></a>
+      </div>
+      </div>
     </div>
+    <% end %>
 
 
-  </div>
-<% end %>
-
-</div
+</div>
 </section>
 </div>
 
