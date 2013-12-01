@@ -1,30 +1,94 @@
-<div id="hero" class="container">
-  <div class="inner">
-  <h1>BECAUSE EVERYONE CAN XL</h1>
-  <h2>XL - For Anyone, Anywhere</h2>
+<!-- 
+  1. Header
+  2. Main
+  3. About
+  4. Team
+  5. Contact
+  6. Footer
+-->
+<div class="container">
+<section id="home" class="scroll-panel">
+  <div class="jumbotron jumbotron-midnight text-centered">
+    <h1>Because everyone can XL</h1>
+    <p>We Create Excel Models that People Want to Use</p>
+    <%= image_tag("phonesletterbox.jpg", class: "img-responsive", alt: "backimage") %>
   </div>
+</section>
+
+<section id="about" class="scroll-panel">
+  <div class="jumbotron jumbotron-midnight text-centered">
+    <h1>Test your Excel Skillset with our XLTEST</h1>
+  </div>
+
+  <div class="jumbotron jumbotron-midnight text-centered">
+    <div class="row">
+      <div class="showcase-item col-md-4">
+        <div class="showcase-item-box">
+            <%= image_tag("retina.svg", class: "img-responsive", alt: "backimage") %>
+            <p>Test your knowledge</p>
+        </div>
+      </div>
+
+      <div class="showcase-item col-md-6">
+        <div class="showcase-item-box">
+            <%= image_tag("clipboard.svg", class: "img-responsive", alt: "backimage") %>
+            <p>Learn new skills</p>
+        </div>
+      </div>
+
+      <div class="showcase-item col-md-2">
+        <div class="showcase-item-box">
+            <%= image_tag("book.svg", class: "img-responsive", alt: "backimage") %>
+            <p>Review immportant concents</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="showcase-item col-md-6">
+        <div class="showcase-item-box">
+            <%= image_tag("clipboard.svg", class: "img-responsive", alt: "backimage") %>
+            <p>Learn new skills</p>
+        </div>
+      </div>
+
+            <div class="showcase-item col-md-2">
+        <div class="showcase-item-box">
+            <%= image_tag("book.svg", class: "img-responsive", alt: "backimage") %>
+            <p>Review immportant concents</p>
+        </div>
+      </div>
+
+
+      <div class="showcase-item col-md-4">
+        <div class="showcase-item-box">
+            <%= image_tag("retina.svg", class: "img-responsive", alt: "backimage") %>
+            <p>Test your knowledge</p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<section class="scroll-panel">
+  <div class="container">
+  <!-- sign up -->
+    <div class="col-md-4"><div class="center-block"><p class="text-center"><%= link_to "Sign up", new_user_path() %></p></div> 
+    </div>
+  </div>
+
+</section>
 </div>
 
-<div class="container">
-  <div class="row text-center">
-    <div class="col-xs-6 col-md-4"><h3>Feature 1</h3>
-      <p class="text-center"> Text here </p>
-    </div>
-    <div class="col-xs-6 col-md-4"><h3>Feature 2</h3>
-      <p class="text-center"> Text here </p>
-    </div>
-    <div class="col-xs-6 col-md-4"><h3>Feature 3</h3>
-      <p class="text-center"> Text here </p>
-    </div>
-  </div>
-</div>
 
-<div class="container">
-<!-- sign up -->
-	<div class="col-md-4"><div class="center-block"><p class="text-center"><%= link_to "Sign up", new_user_path() %></p></div> 
-	</div>
-</div>
 
 <div class="row text-center">
-<div class="span12 pagination-centered"><%= link_to image_tag("xl.png", class: "img-responsive", alt: "Excel", :height => 100), 'http://xlmodel.herokuapp.com/' %></div>
+<div class="span12 pagination-centered"><%= image_tag("xl.png", class: "img-responsive", alt: "Excel", :height => 100) %></div>
 </div>

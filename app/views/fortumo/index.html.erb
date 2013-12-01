@@ -1,0 +1,13 @@
+ 
+  incoming_url = request.referer # this catch the incoming url, including its params
+  incoming_url_params = URI(incoming_url).query # this returns an string with the incoming url params
+  incoming_url_params_hash = Hash[*incoming_url_params.split(/=|?/)]
+<%= incoming_url %>
+
+<%= incoming_url_params %>
+
+<%= incoming_url_params_hash %>
+
+<%= end %>
+
+<br />

@@ -1,5 +1,6 @@
 Xlmodel::Application.routes.draw do
   resources :users
+  resources :fortumo
 
   root 'static_pages#home'
 

@@ -36,3 +36,12 @@ $ ->
       false
 
 
+$ ->
+  $(".processor-div").on "change", ->
+    if $(this).val() is "stripe"
+      $("#stripe-div").show()
+      $("#fortumo-div").hide()
+    if $(this).val() is "fortumo"
+      $("#stripe-div").hide()
+      $("#fortumo-div").show()
+

@@ -1,0 +1,271 @@
+@import "bootstrap";
+@import "flat-ui";
+
+/* mixins, variables, etc. */
+
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+
+
+
+/* universal */
+/*
+html {
+	overflow-y: scroll;
+}  */
+
+body {
+  background: #34495e;
+/*  background-color: #28384D;  235E9E   28384D    */
+/*  color: #ffffff;  */
+  /* font-family: ""   */
+}
+/*
+section {
+	overflow: auto;
+}
+
+textarea {
+	resize: vertical;
+}
+
+.center {
+	text-align: center;
+	h1 {
+	margin-bottom: 10px;
+	}
+}  */
+
+/* .primary:hover {
+  background: #257BB4;
+} */
+
+/* navbar */
+/*
+.navbar-default {
+  background-color: 235E9E;
+  border-color: E7E7E7;
+}   */
+
+/* typography */
+/*
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+*/  /*
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $gray-light;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}  */
+
+/* header */
+/*
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff; 
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;  
+  &:hover {
+  color: #fff;
+  text-decoration: none;
+  }  
+}  */
+
+/* footer */
+/*
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  background-color: 404040;
+  a {
+  color: #ffffff;
+  &:hover {
+    color: #222;
+    }
+  }
+  small {
+    float: left;
+  }
+	ul {
+	  float: right;
+	  list-style: none;
+		li {
+		  float: left;
+		  margin-left: 10px;
+		}
+	}
+} */
+
+/* sidebar */
+
+/*
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid $gray-lighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}  */
+
+/* miscellaneious */
+
+  .debug_dump {
+    clear: both;
+    float: center;
+    width: 50%;
+    margin-top: 45px;
+    @include box_sizing;
+  }
+
+/* forms */
+
+  input, textarea, select, .uneditable-input {
+    border: 1px solid #bbb;
+    width: 50%;
+    margin-bottom: 15px;
+    @include box_sizing;
+  }
+
+  input {
+    height: auto !important;
+  }
+
+#error_explanation {
+  color: #f00;
+  ul { list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+/* Users index */
+/*
+.users {
+  list-style: none;
+  margin: 0;
+  li { 
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $gray-lighter;
+    &:last-child {
+      border-bottom: 1px solid $gray-lighter;
+    }
+  }
+} */
+
+
+/* fyi
+
+257BB4 = nice blue
+263449; = rgb(38, 52, 73) = nice dark blue
+235E9E; rgb(35, 94, 158) = bright blue, bits header
+28384D; rgb(40, 56, 77) = bits background; flat UI header
+222E40; rgb(34, 46, 64) = bits background lower
+151B24; rgb(21, 27, 36) = bits footer
+384C6D; rgb(56, 76, 109) = bits text footer
+404040 = nice black
+34495e = individuals
+2c3e50 = business
+34495e
+1b242f
+27ae60
+2ecc71 = button green
+3498db = button
+ = flat UI header
+
+*/
+
+/* pay with bits */
+/*
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Sans'), local('PTSans-Regular'), url(http://themes.googleusercontent.com/static/fonts/ptsans/v5/7YGmE4Ls5b94ct65u07hVQLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('PT Sans Bold'), local('PTSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/ptsans/v5/0XxGQsSc1g4rdRdjJKZrNL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+} */
+
