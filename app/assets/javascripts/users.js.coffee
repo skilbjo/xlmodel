@@ -37,7 +37,8 @@ $ ->
 
 
 $ ->
-  $(".processor-div").on "change", ->
+  $radio = $(".payment_processor_radio") 
+  $radio.change ->
     if $(this).val() is "stripe"
       $("#stripe-div").show()
       $("#fortumo-div").hide()

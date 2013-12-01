@@ -15,9 +15,9 @@
   <div class="form-group">
     <div class="field"> <%= f.label :name %> <%= f.text_field :name, :value => "John" , :autocomplete => :on %> </div>
     <div class="field"> <%= f.label :email %> <%= f.text_field :email, :value => "johnskilbeck@gmail.com", :autocomplete => :on %> </div>
-    <div id="processor">
-      <%= label :payment_processor, 'Stripe' %><%= f.radio_button :payment_processor, 'stripe' %>
-      <%= label :payment_processor, 'Pay by Mobile!' %><%= f.radio_button :payment_processor, 'fortumo' %>
+    <div id="processor-div">
+      <%= label :payment_processor, 'Stripe' %><%= f.radio_button :payment_processor, 'stripe', class: 'payment_processor_radio' %>
+      <%= label :payment_processor, 'Pay by Mobile!' %><%= f.radio_button :payment_processor, 'fortumo', class: 'payment_processor_radio' %>
     </div>
     <% if @user.ptoken.present? %> Credit card has been provided.
     <% else %>
@@ -41,7 +41,7 @@
 
     
   <!-- Show this if Fortumo radio button is selected --> 
-    <div id="fortumo-div"   
+    <div id="fortumo-div">   
       <%= f.submit "fortumo", name: "commit", id: "fortumo" %>
       <a id="fmp-button" href="#" rel="68d255f7612c6363dce8cd2b73e6d303"><img src="http://fortumo.com/images/fmp/fortumopay_96x47.png" width="96" height="47" alt="Mobile Payments by Fortumo" border="0" /></a>
     </div>
