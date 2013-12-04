@@ -34,19 +34,19 @@ attr_accessor :ptoken
     #self.errors.add :base, "There was a problem with your credit card." 
   end
 
-#FORTUMO_IPS = ['79.125.125.1', '79.125.5.205', '79.125.5.95', 'localhost:3000']
+FORTUMO_IPS = ['79.125.125.1', '79.125.5.205', '79.125.5.95', '79.125.5.205']
 
 def index
   incoming_url = request.referer # this catch the incoming url, including its params <-- not request referer; mess around in testing; something on the request object request.host??
   request.remote_ip
 
-#  if not FORTUMO_IPS.include? request.remote_ip
-#    return abort('FORTUMO_IPS: Unknown IP')
-#  end
+  if not FORTUMO_IPS.include? request.remote_ip
+    return abort('FORTUMO_IPS: Unknown IP')
+  end
 
-#  if not valid_signature?(params) 
-#    return abort('Error: get_signature')
-#  end
+  if not valid_signature?(params) 
+    return abort('Error: get_signature')
+  end
 
   @user = User.new(user_params)
   @user.name = params[:sender]
