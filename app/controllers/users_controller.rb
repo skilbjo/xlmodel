@@ -10,7 +10,7 @@ attr_accessor :ptoken
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params)  
     @user.product = 'xltest'  # can be either radio button or link path in future
     if params[:commit] == 'stripe'
       if save_with_stripe # || save_with_fortumo || save_with_coinbase ### this will be radio button
@@ -34,28 +34,29 @@ attr_accessor :ptoken
     #self.errors.add :base, "There was a problem with your credit card." 
   end
 
-FORTUMO_IPS = ['79.125.125.1', '79.125.5.205', '79.125.5.95', '79.125.5.205']
+FORTUMO_IPS = ['79.125.125.1', '79.125.5.205', '79.125.5.95']
 
 def index
-  incoming_url = request.referer # this catch the incoming url, including its params <-- not request referer; mess around in testing; something on the request object request.host??
-  request.remote_ip
+  incoming_url_params = request.query_parameters
+  incoming_ip = request.remote_ip # request.env['HTTP_X_FORWARDED_FOR'] #request.remote_ip
 
-  if not FORTUMO_IPS.include? request.remote_ip
-    return abort('FORTUMO_IPS: Unknown IP')
+  if not FORTUMO_IPS.include? incoming_ip
+    puts "not a valid ip"
+    puts incoming_ip
+    #return abort(incoming_ip)
   end
 
-  if not valid_signature?(params) 
+  if not valid_signature?( incoming_url_params ) 
     return abort('Error: get_signature')
   end
 
-  @user = User.new(user_params)
-  @user.name = params[:sender]
-  @user.email = params[:sender]
+  @user = User.new(user_params) #need to figure out how to submit form and have fortumo pop up come up to store name and email
+  @user.email = params['sender']
   @user.product = 'xltest' 
   @user.payment_processor = 'Fortumo'
-  @user.ptoken = params[:sender]
+  @user.ptoken = params['payment_id']
 
-  if @user.save && @user.valid?
+  if @user.save && @user.valid? && params['status'] == 'completed'
     flash.now[:success] = "Thank you for payment!"
   end
 end
@@ -68,14 +69,17 @@ def receive_fortumo
 end
 
 def valid_signature?( incoming_url_params )
-  str = ""
-  incoming_url_params.keys.sort.each do |key,value|  #< -- this correct
+  attempted_params = ""
+  incoming_url_params.sort.each do |key,value|  #< -- this correct
     if key != 'sig'  # <-- this correct?
-      str << "#{key}=#{value}"
+      attempted_params << "#{key}=#{value}"
     end
   end
-  str << Fortumo_secret
-  return Fortumo_secret == Digest::MD5.hexdigest(str)
+  attempted_params << Fortumo_secret
+
+  signature = Digest::MD5.hexdigest(attempted_params)
+
+  return signature == incoming_url_params['sig']
 
   # # check payment status
   # if ("/failed/".match(incoming_url_params['status']))
@@ -84,6 +88,7 @@ def valid_signature?( incoming_url_params )
   # else
   #   # logic for successful payment (callback to controller)
   # end
+
 end
 
   def save_with_dwolla
@@ -98,6 +103,8 @@ end
   	def user_params
       if params[:user].present?
     	  params.require(:user).permit(:name, :email, :product, :payment_processor, :ptoken)
-    	end
+      #elsif params['sender'].present?
+      #  @user.name = params['sender'] unless params['sender'].nil?
+      end
     end
 end
