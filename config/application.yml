@@ -1,0 +1,14 @@
+# Add application configuration variables here, as shown below.
+#
+# PUSHER_APP_ID: "2954"
+# PUSHER_KEY: 7381a978f7dd7f9a1117
+# PUSHER_SECRET: abdc3b896a0ffb85d373
+# STRIPE_API_KEY: EdAvEPVEC3LuaTg5Q3z6WbDVqZlcBQ8Z
+# STRIPE_PUBLIC_KEY: pk_BRgD57O8fHja9HxduJUszhef6jCyS
+
+XL_GMAIL_USERNAME: "skilbjo"
+XL_GMAIL_PASSWORD: "naxowyljgfaogwzn"
+STRIPE_TEST_SECRET: sk_test_s3q4qpZ13zBdrfiIvmB7JKQz
+STRIPE_TEST_PUBLIC: pk_test_Bs8ajQXtiMr40QWaR7BthKK4
+STRIPE_TEST_PUBLIC: pk_test_Bs8ajQXtiMr40QWaR7BthKK4
+FORTUMO_SECRET_KEY: ef3df095f67546f27e9dd8948a22c0da
