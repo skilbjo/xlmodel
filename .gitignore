@@ -20,3 +20,4 @@
 /config/application.yml
 /config/routes.rb
 /config/initializers/secret_token_orig.rb
+/config/paypal.yml
